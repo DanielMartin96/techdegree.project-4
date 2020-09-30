@@ -26,4 +26,16 @@ class Phrase {
       }
     }
   }
+
+  checkLetter(e) {
+    for (let i = 0; i < this.phrase.length; i++) {
+      if (e.target === this.phrase[i]) {
+        console.log("One is correct!");
+      } else {
+        // remove life
+      }
+    }
+  }
+
+  showMatchedLetter() {}
 }

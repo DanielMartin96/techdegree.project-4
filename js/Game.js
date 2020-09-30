@@ -41,7 +41,16 @@ class Game {
    */
   startGame() {
     document.getElementById("overlay").style.display = "none";
-    this.getRandomPhrase();
-    phrase.addPhraseToDisplay();
+    const randomPhrase = this.getRandomPhrase();
+    randomPhrase.addPhraseToDisplay();
+    this.activePhrase = randomPhrase;
   }
+
+  handleInteraction() {}
+
+  checkForWin() {}
+
+  removeLife() {}
+
+  gameOver() {}
 }

@@ -28,6 +28,19 @@ logPhrase(game.getRandomPhrase());
 game.getRandomPhrase().addPhraseToDisplay();
  */
 
-const game = new Game();
+/* const game = new Game();
 game.startGame();
-console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`); */
+
+let game;
+document.getElementById("btn__reset").addEventListener("click", (e) => {
+  game = new Game();
+  game.startGame();
+});
+
+let phrase;
+let characters = document.getElementsByClassName("key");
+characters.addEventListener("click", (e) => {
+  phrase = new Phrase();
+  phrase.checkLetter();
+});
