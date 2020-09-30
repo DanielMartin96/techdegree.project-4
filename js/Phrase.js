@@ -18,6 +18,7 @@ class Phrase {
       // console.log the value
       // if statement to see if its a character or space
       // set attribute relevant to the index of the word
+      // class "hide letter" and then the relevant character
     }
   }
 }
