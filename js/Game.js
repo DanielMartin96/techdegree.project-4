@@ -15,10 +15,18 @@ class Game {
    */
   createPhrases(num) {
     let phrases = [];
-    for (i = 0; i < num; i++) {
-      const phrase = "Hello world!";
-      phrases.push(phrase);
-    }
+    const phrase = [new Phrase("Hello world!"), new Phrase("Goodybye world!")];
+    phrases.push(phrase);
     return phrases;
+  }
+
+  /**
+   * Selects random phrase from phrases property
+   * @return {Object} Phrase object chosen to be used
+   */
+  getRandomPhrase() {
+    // need to get a random number between 0 - phrases.length
+    const randomPhrase = phrases[Math.floor(Math.random() * (5 - 0 + 1)) + 0];
+    return randomPhrase;
   }
 }
