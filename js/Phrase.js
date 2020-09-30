@@ -10,15 +10,20 @@ class Phrase {
   /**
    * Display phrase on game board
    */
-  addPhraseToDisplay(phrase) {
-    // need to get phrase length
-    for (i = 0; i < phrase.length; i++) {
+  addPhraseToDisplay() {
+    for (let i = 0; i < this.phrase.length; i++) {
       const li = document.createElement("li");
-      // get index of the phrase character
-      // console.log the value
-      // if statement to see if its a character or space
-      // set attribute relevant to the index of the word
-      // class "hide letter" and then the relevant character
+      const ul = document.getElementsByTagName("ul")[0];
+      if (this.phrase[i] === " ") {
+        li.innerHTML = " ";
+        li.setAttribute("class", "hide space");
+        ul.appendChild(li);
+      } else {
+        const li = document.createElement("li");
+        li.innerHTML = this.phrase[i];
+        li.setAttribute("class", `hide letter ${this.phrase[i]}`);
+        ul.appendChild(li);
+      }
     }
   }
 }

@@ -5,7 +5,7 @@
 class Game {
   constructor() {
     this.missed = 0;
-    this.phrases = createPhrases(5);
+    this.phrases = this.createPhrases();
     this.activePhrase = null;
   }
 
@@ -13,10 +13,15 @@ class Game {
    * Creates phrases for use in game
    * @return {array} An array of phrases that could be used in the game
    */
-  createPhrases(num) {
-    let phrases = [];
-    const phrase = [new Phrase("Hello world!"), new Phrase("Goodybye world!")];
-    phrases.push(phrase);
+  createPhrases() {
+    const phrases = [
+      new Phrase("Sue Martin"),
+      new Phrase("Rory Martin"),
+      new Phrase("Daniel Martin"),
+      new Phrase("Joseph Martin"),
+      new Phrase("Rebecca Martin"),
+      new Phrase("Jamie Martin"),
+    ];
     return phrases;
   }
 
@@ -25,8 +30,18 @@ class Game {
    * @return {Object} Phrase object chosen to be used
    */
   getRandomPhrase() {
-    // need to get a random number between 0 - phrases.length
-    const randomPhrase = phrases[Math.floor(Math.random() * (5 - 0 + 1)) + 0];
+    const randomPhrase = this.phrases[
+      Math.floor(Math.random() * this.phrases.length)
+    ];
     return randomPhrase;
+  }
+
+  /**
+   * Begins game by selecting a random phrase and displaying it to user
+   */
+  startGame() {
+    document.getElementById("overlay").style.display = "none";
+    this.getRandomPhrase();
+    phrase.addPhraseToDisplay();
   }
 }
