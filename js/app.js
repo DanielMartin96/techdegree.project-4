@@ -38,9 +38,6 @@ document.getElementById("btn__reset").addEventListener("click", (e) => {
   game.startGame();
 });
 
-let phrase;
-let characters = document.getElementsByClassName("key");
-characters.addEventListener("click", (e) => {
-  phrase = new Phrase();
-  phrase.checkLetter();
+window.addEventListener("click", (e) => {
+  // checkLetter();
 });
