@@ -29,10 +29,10 @@ class Phrase {
 
   checkLetter(letter) {
     for (let i = 0; i < this.phrase.length; i++) {
-      if (letter == this.phrase[i]) {
-        return letter;
+      if (letter !== this.phrase[i]) {
+        return true;
       } else {
-        console.log("false");
+        return false;
       }
     }
   }

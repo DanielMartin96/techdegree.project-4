@@ -48,7 +48,10 @@ class Game {
 
   handleInteraction() {}
 
-  checkForWin() {}
+  checkForWin() {
+    const lettersLeft = this.activePhrase.length;
+    console.log(lettersLeft);
+  }
 
   removeLife() {}
 
