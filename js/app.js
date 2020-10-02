@@ -39,5 +39,5 @@ document.getElementById("btn__reset").addEventListener("click", (e) => {
 });
 
 window.addEventListener("click", (e) => {
-  // checkLetter();
+  game.handleInteraction();
 });

@@ -27,15 +27,20 @@ class Phrase {
     }
   }
 
-  checkLetter(e) {
+  checkLetter(letter) {
     for (let i = 0; i < this.phrase.length; i++) {
-      if (e.target === this.phrase[i]) {
-        console.log("One is correct!");
+      if (letter == this.phrase[i]) {
+        return letter;
       } else {
-        // remove life
+        console.log("false");
       }
     }
   }
 
-  showMatchedLetter() {}
+  showMatchedLetter(letter) {
+    for (let i = 0; i < this.phrase.length; i++) {
+      let li = document.getElementsByClassName(`hide letter ${letter}`);
+      li.setAttribute("class", `show letter ${letter}`);
+    }
+  }
 }
