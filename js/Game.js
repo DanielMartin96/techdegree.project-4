@@ -46,7 +46,14 @@ class Game {
     this.activePhrase = randomPhrase;
   }
 
-  handleInteraction() {}
+  handleInteraction(letter) {
+    const button = document.querySelectorAll("button");
+    for (let i = 0; i < button.length; i++) {
+      if (button.innerHTML === letter) {
+        button.disabled = true;
+      }
+    }
+  }
 
   checkForWin() {
     const lettersLeft = this.activePhrase["phrase"].length - 1; // taking away one character for the space bar

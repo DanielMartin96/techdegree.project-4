@@ -41,3 +41,11 @@ document.getElementById("btn__reset").addEventListener("click", (e) => {
 window.addEventListener("click", (e) => {
   game.handleInteraction();
 });
+
+let buttons = document.querySelectorAll("button");
+for (i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", (e) => {
+    console.log(e.target);
+    game.handleInteraction(e.target);
+  });
+}
