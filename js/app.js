@@ -45,7 +45,7 @@ window.addEventListener("click", (e) => {
 let buttons = document.querySelectorAll("button");
 for (i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", (e) => {
-    console.log(e.target);
-    game.handleInteraction(e.target);
+    console.log(e.target.innerHTML);
+    game.handleInteraction(e.target.innerHTML);
   });
 }
