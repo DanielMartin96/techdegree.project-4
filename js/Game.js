@@ -49,11 +49,38 @@ class Game {
   handleInteraction() {}
 
   checkForWin() {
-    const lettersLeft = this.activePhrase.length;
+    const lettersLeft = this.activePhrase["phrase"].length - 1; // taking away one character for the space bar
     console.log(lettersLeft);
+    if (lettersLeft === phrase.letterGuessed) {
+      return true;
+    }
+    return false;
   }
 
-  removeLife() {}
+  removeLife() {
+    let life = document.getElementsByClassName("tries")[0];
+    life.classList.remove("tries");
+    const image = life.getElementsByTagName("img")[0];
+    image.src = "images/lostHeart.png";
+    this.missed++;
+    if (this.missed === 5) {
+      this.gameOver();
+    }
+  }
 
-  gameOver() {}
+  gameOver(boolean) {
+    if (boolean) {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("overlay").classList.remove("start");
+      document.getElementById("overlay").classList.add("win");
+      document.getElementById("game-over-message").innerHTML =
+        "CONGRATULATIONS - WINNER";
+    } else {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("overlay").classList.remove("start");
+      document.getElementById("overlay").classList.add("lose");
+      document.getElementById("game-over-message").innerHTML =
+        "GAME OVER - LOSER";
+    }
+  }
 }

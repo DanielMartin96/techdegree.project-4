@@ -5,6 +5,7 @@
 class Phrase {
   constructor(phrase) {
     this.phrase = phrase.toLowerCase();
+    this.lettersGuessed = 0;
   }
 
   /**
@@ -15,8 +16,7 @@ class Phrase {
       const li = document.createElement("li");
       const ul = document.getElementsByTagName("ul")[0];
       if (this.phrase[i] === " ") {
-        li.innerHTML = " ";
-        li.setAttribute("class", "hide space");
+        li.setAttribute("class", `hide space ${this.phrase[i]}`);
         ul.appendChild(li);
       } else {
         const li = document.createElement("li");
@@ -29,18 +29,19 @@ class Phrase {
 
   checkLetter(letter) {
     for (let i = 0; i < this.phrase.length; i++) {
-      if (letter !== this.phrase[i]) {
+      if (letter == this.phrase[i]) {
         return true;
-      } else {
-        return false;
       }
     }
+    return false;
   }
 
   showMatchedLetter(letter) {
     for (let i = 0; i < this.phrase.length; i++) {
-      let li = document.getElementsByClassName(`hide letter ${letter}`);
+      const li = document.getElementsByClassName(`hide letter ${letter}`)[i];
       li.setAttribute("class", `show letter ${letter}`);
+      // take away 1 to lettersLeft variable in checkForWin
+      this.lettersGuessed += 1;
     }
   }
 }
