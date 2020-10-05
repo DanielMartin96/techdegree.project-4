@@ -44,13 +44,26 @@ class Game {
     const randomPhrase = this.getRandomPhrase();
     randomPhrase.addPhraseToDisplay();
     this.activePhrase = randomPhrase;
+    let button = document.querySelectorAll("button");
   }
 
   handleInteraction(letter) {
-    const button = document.querySelectorAll("button");
+    let button = document.querySelectorAll("button");
     for (let i = 0; i < button.length; i++) {
-      if (button.innerHTML === letter) {
-        button.disabled = true;
+      if (button[i].innerHTML === letter) {
+        for (let j = 0; j < this.activePhrase.length; j++) {
+          if (letter == this.activePhrase[j]) {
+            button[i].disabled = true;
+            button[i].classList.add("chosen");
+          } else {
+            button[i].disabled = true;
+            button[i].classList.add("wrong");
+            this.removeLife();
+            game.activePhrase.showMatchedLetter(letter);
+            this.checkForWin();
+            this.gameOver(false);
+          }
+        }
       }
     }
   }
@@ -58,23 +71,24 @@ class Game {
   checkForWin() {
     const lettersLeft = this.activePhrase["phrase"].length - 1; // taking away one character for the space bar
     console.log(lettersLeft);
-    if (lettersLeft === phrase.letterGuessed) {
-      return true;
+    if (lettersLeft === this.activePhrase.letterGuessed) {
+      this.gameOver(true);
     }
     return false;
   }
 
   removeLife() {
     let life = document.getElementsByClassName("tries")[0];
-    life.classList.remove("tries");
+    life.setAttribute("class", "");
     const image = life.getElementsByTagName("img")[0];
     image.src = "images/lostHeart.png";
     this.missed++;
     if (this.missed === 5) {
-      this.gameOver();
+      this.gameOver(false);
     }
   }
 
+  // the function below changes the color and text on screen depending if the function is true or false
   gameOver(boolean) {
     if (boolean) {
       document.getElementById("overlay").style.display = "block";
@@ -82,12 +96,33 @@ class Game {
       document.getElementById("overlay").classList.add("win");
       document.getElementById("game-over-message").innerHTML =
         "CONGRATULATIONS - WINNER";
+      this.resetGame(); // resets the game
     } else {
       document.getElementById("overlay").style.display = "block";
       document.getElementById("overlay").classList.remove("start");
       document.getElementById("overlay").classList.add("lose");
       document.getElementById("game-over-message").innerHTML =
         "GAME OVER - LOSER";
+      this.resetGame(); // resets the game
+    }
+  }
+  resetGame() {
+    let button = document.getElementsByTagName("button");
+    for (let i = 0; i < button.length; i++) {
+      button[i].disabled = false; // enabling keys
+      button[i].setAttribute("class", "key"); // changing each button class
+    } // enabling all the buttons
+    const phrase = document.getElementById("phrase");
+    const ul = phrase.getElementsByTagName("ul");
+    ul[0].remove(); // deleting the ul
+    const newUL = document.createElement("ul"); // creating a new one
+    phrase.appendChild(newUL); // appending it to the phrase class
+    let scoreboard = document.getElementById("scoreboard");
+    let li = scoreboard.getElementsByTagName("li");
+    let img = scoreboard.getElementsByTagName("img"); // gets the images to replace
+    for (let j = 0; j < 5; j++) {
+      img[j].setAttribute("src", "images/liveHeart.png"); // cycles through each image to replace
+      li[j].setAttribute("class", "tries"); // should change the class on the
     }
   }
 }

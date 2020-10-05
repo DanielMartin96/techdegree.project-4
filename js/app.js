@@ -38,10 +38,6 @@ document.getElementById("btn__reset").addEventListener("click", (e) => {
   game.startGame();
 });
 
-window.addEventListener("click", (e) => {
-  game.handleInteraction();
-});
-
 let buttons = document.querySelectorAll("button");
 for (i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", (e) => {

@@ -37,9 +37,9 @@ class Phrase {
   }
 
   showMatchedLetter(letter) {
-    for (let i = 0; i < this.phrase.length; i++) {
-      const li = document.getElementsByClassName(`hide letter ${letter}`)[i];
-      li.setAttribute("class", `show letter ${letter}`);
+    const li = document.getElementsByClassName(`hide letter ${letter}`);
+    for (let i = 0; i < li.length; ) {
+      li[i].setAttribute("class", `show letter ${letter}`);
       // take away 1 to lettersLeft variable in checkForWin
       this.lettersGuessed += 1;
     }
