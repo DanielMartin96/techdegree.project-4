@@ -44,37 +44,33 @@ class Game {
     const randomPhrase = this.getRandomPhrase();
     randomPhrase.addPhraseToDisplay();
     this.activePhrase = randomPhrase;
-    let button = document.querySelectorAll("button");
   }
 
-  handleInteraction(letter) {
-    let button = document.querySelectorAll("button");
-    for (let i = 0; i < button.length; i++) {
-      if (button[i].innerHTML === letter) {
-        for (let j = 0; j < this.activePhrase.length; j++) {
-          if (letter == this.activePhrase[j]) {
-            button[i].disabled = true;
-            button[i].classList.add("chosen");
-          } else {
-            button[i].disabled = true;
-            button[i].classList.add("wrong");
-            this.removeLife();
-            game.activePhrase.showMatchedLetter(letter);
-            this.checkForWin();
-            this.gameOver(false);
-          }
-        }
+  handleInteraction(button) {
+    button.disabled = true;
+    if (this.activePhrase.checkLetter(button.textContent)) {
+      button.classList.add("chosen");
+      this.activePhrase.showMatchedLetter(button.textContent);
+
+      if (this.checkForWin()) {
+        this.gameOver(true);
       }
+    } else if (button.innerHTML === "Start Game") {
+      // stops a life being taken away when the player clicks start game
+    } else {
+      button.classList.add("wrong");
+      this.removeLife();
     }
   }
 
   checkForWin() {
     const lettersLeft = this.activePhrase["phrase"].length - 1; // taking away one character for the space bar
-    console.log(lettersLeft);
-    if (lettersLeft === this.activePhrase.letterGuessed) {
-      this.gameOver(true);
+    this.guessed += 1;
+    if (lettersLeft === this.activePhrase.lettersGuessed) {
+      return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   removeLife() {

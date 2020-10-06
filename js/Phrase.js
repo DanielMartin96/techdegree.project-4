@@ -30,6 +30,7 @@ class Phrase {
   checkLetter(letter) {
     for (let i = 0; i < this.phrase.length; i++) {
       if (letter == this.phrase[i]) {
+        this.lettersGuessed + 1;
         return true;
       }
     }
